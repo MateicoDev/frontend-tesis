@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Reclamos del consorcio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      Reclamos del consorcio "Ituzaingó"
+    </ion-list-header>
+    <ion-item *ngFor="let c of claims">
+      <h4>
+        Motivo: <strong>{{ c.title }}</strong>
+      </h4>
+      <p>
+        Descripción: {{ c.content }}
+      </p>
+    </ion-item>
+  </ion-list>
+</ion-content>
