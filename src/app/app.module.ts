@@ -9,8 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {SendClaimPageModule} from "../pages/send-claim/send-claim.module";
 import { ClaimsProvider } from '../providers/claims/claims';
-import {HttpClientModule} from "@angular/common/http";
-import {ClaimsListPageModule} from "../pages/claims-list/claims-list.module";
+import { HttpClientModule } from "@angular/common/http";
+import { ClaimsListPageModule } from "../pages/claims-list/claims-list.module";
+import { LoginPageModule } from "../pages/login/login.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ClaimsListPageModule} from "../pages/claims-list/claims-list.module";
     IonicModule.forRoot(MyApp),
     SendClaimPageModule,
     ClaimsListPageModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

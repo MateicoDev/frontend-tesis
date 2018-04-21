@@ -1,3 +1,17 @@
 page-send-claim {
-
+  .item-inner .input-wrapper {
+    flex-direction: column;
+    padding-left: 1rem;
+    ion-label {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+  ion-textarea {
+    height: 10rem;
+    textarea.text-input {
+      height: 80%;
+      margin-top: 0;
+    }
+  }
 }
