@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, LoadingController, ToastController} from 'ionic-angular';
-// @Modeñs
-import { Claim } from "../../models/claim.model";
+// @Providers
 import { ClaimsProvider } from "../../providers/claims/claims";
 
 
@@ -11,7 +10,7 @@ import { ClaimsProvider } from "../../providers/claims/claims";
   templateUrl: 'claims-list.html',
 })
 export class ClaimsListPage {
-  claims: Array<Claim>;
+  claims: Array<any>;
 
   constructor(private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
