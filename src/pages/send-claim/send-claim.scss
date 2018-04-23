@@ -1,4 +1,10 @@
 page-send-claim {
+  form {
+    width: 100%;
+  }
+  .item {
+    background-color: rgba(white, 0.7);
+  }
   .item-inner .input-wrapper {
     flex-direction: column;
     padding-left: 1rem;
@@ -13,5 +19,14 @@ page-send-claim {
       height: 80%;
       margin-top: 0;
     }
+  }
+
+  .button.send-claim-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto 3rem;
+    width: 80%;
   }
 }
