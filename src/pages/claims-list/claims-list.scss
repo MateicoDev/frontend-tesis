@@ -16,5 +16,12 @@ page-claims-list {
 
   .item {
     border: 1px solid lightgrey;
+    h4:first-child {
+      margin: 0;
+      padding: 0.3rem;
+    }
+    p {
+      white-space: normal;
+    }
   }
 }
