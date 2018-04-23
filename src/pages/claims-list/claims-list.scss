@@ -1,0 +1,20 @@
+page-claims-list {
+  .list {
+    width: 100%;
+  }
+
+  .list-header, .item {
+    box-shadow: 1px 1px 3px grey;
+  }
+
+  .list-header {
+    background-color: orange;
+    border-top: none;
+    font-weight: 500;
+    font-size: 1.75rem;
+  }
+
+  .item {
+    border: 1px solid lightgrey;
+  }
+}

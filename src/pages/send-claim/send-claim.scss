@@ -1,0 +1,32 @@
+page-send-claim {
+  form {
+    width: 100%;
+  }
+  .item {
+    background-color: rgba(white, 0.7);
+  }
+  .item-inner .input-wrapper {
+    flex-direction: column;
+    padding-left: 1rem;
+    ion-label {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+  ion-textarea {
+    height: 10rem;
+    textarea.text-input {
+      height: 80%;
+      margin-top: 0;
+    }
+  }
+
+  .button.send-claim-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto 3rem;
+    width: 80%;
+  }
+}
