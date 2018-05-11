@@ -1,23 +1,45 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { MenuController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // @Pages
-import { LoginPage } from "../pages/login/login";
+import { SendClaimPage } from "../pages/send-claim/send-claim";
+import { ClaimsListPage } from "../pages/claims-list/claims-list";
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  @ViewChild(Nav) nav: Nav;
+  @ViewChild('sideMenu') sideMenu: MenuController;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  rootPage:any = ClaimsListPage;
+
+  pages = [
+    {
+      component: SendClaimPage,
+      name: 'Enviar Reclamo',
+    },
+    {
+      component: ClaimsListPage,
+      name: 'Listar Reclamos',
+    }
+  ];
+
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  openPage(page) {
+    this.sideMenu.close();
+    this.nav.setRoot(page.component);
   }
 }

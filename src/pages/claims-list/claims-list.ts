@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {IonicPage, LoadingController, ToastController} from 'ionic-angular';
 // @Providers
 import { ClaimsProvider } from "../../providers/claims/claims";
+// @Plugins
+import * as moment from 'moment';
 
 
 @IonicPage()
@@ -25,7 +27,7 @@ export class ClaimsListPage {
     this.claims = [];
     this.claimsPrv.getCurrentClaims().subscribe(
       res => {
-        this.claims.push(...res['items']);
+        this.claims.push(...res['claims']['items']);
         load.dismiss();
       },
       err => {
@@ -44,6 +46,8 @@ export class ClaimsListPage {
     toast.present();
   }
 
-
+  private formatDate(date: string) {
+    return moment(date).format('DD [de] MMMM, YYYY [-] HH:mm');
+  }
 
 }
