@@ -1,21 +1,24 @@
 <ion-header>
-  <ion-navbar>
-  </ion-navbar>
+  <ion-toolbar>
+    <button ion-button menuToggle item-start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <h6>
+      Reclamos del consorcio "Ituzaingó"
+    </h6>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header text-center>
-      Reclamos del consorcio "Ituzaingó"
-    </ion-list-header>
-    <ion-item *ngFor="let c of claims">
+    <button ion-item *ngFor="let c of claims" (click)="openClaim(c)">
       <h4>
         Motivo: <strong>{{ c.title }}</strong>
       </h4>
       <p>
-        Descripción: {{ c.content }}
+        Ultima edición: {{ formatDate(c.date) }}
       </p>
       <ion-badge text-capitalize item-end color="danger">{{ c.status.name }}</ion-badge>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>

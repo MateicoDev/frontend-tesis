@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { IonicPage, LoadingController, ToastController } from 'ionic-angular';
 // @Pages
 // @Providers
 import { ClaimsProvider } from "../../providers/claims/claims";
 // @Models
-import {Claim} from "../../models/claim.model";
+import { Claim } from "../../models/claim.model";
 
 @IonicPage()
 @Component({
@@ -16,7 +16,8 @@ export class SendClaimPage {
 
   constructor(private claimsPrv : ClaimsProvider,
               private loaderCtrl: LoadingController,
-              private toastCtrl : ToastController) {
+              private toastCtrl : ToastController,
+              private changeDet: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -32,6 +33,8 @@ export class SendClaimPage {
       res => {
         load.dismiss();
         this.showMessage('Su reclamo ha sido enviado a la administración.');
+        this.claim = new Claim();
+        this.changeDet.detectChanges();
       },
       err => {
         load.dismiss();
