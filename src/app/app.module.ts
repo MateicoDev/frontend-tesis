@@ -11,6 +11,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ClaimsListPageModule } from "../pages/claims-list/claims-list.module";
 
 import * as moment from 'moment';
+import { ClaimMessagePageModule } from "../pages/claim-message/claim-message.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import * as moment from 'moment';
     SendClaimPageModule,
     ClaimsListPageModule,
     HttpClientModule,
+    ClaimMessagePageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

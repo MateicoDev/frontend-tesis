@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let c of claims">
+    <button ion-item *ngFor="let c of claims" (click)="openClaim(c)">
       <h4>
         Motivo: <strong>{{ c.title }}</strong>
       </h4>

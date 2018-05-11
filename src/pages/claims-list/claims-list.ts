@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {IonicPage, LoadingController, ToastController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, ToastController} from 'ionic-angular';
 // @Providers
 import { ClaimsProvider } from "../../providers/claims/claims";
 // @Plugins
 import * as moment from 'moment';
+// @Page
+import {ClaimMessagePage} from "../claim-message/claim-message";
 
 
 @IonicPage()
@@ -16,7 +18,8 @@ export class ClaimsListPage {
 
   constructor(private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
-              private claimsPrv: ClaimsProvider) {
+              private claimsPrv: ClaimsProvider,
+              private navCtrl: NavController) {
   }
 
   ionViewDidEnter() {
@@ -50,4 +53,7 @@ export class ClaimsListPage {
     return moment(date).format('DD [de] MMMM, YYYY [-] HH:mm');
   }
 
+  openClaim(claim: any) {
+    this.navCtrl.push(ClaimMessagePage, { claim });
+  }
 }
