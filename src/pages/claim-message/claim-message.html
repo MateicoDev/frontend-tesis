@@ -13,16 +13,10 @@
     </ion-list-header>
     <ul no-padding class="message-timeline">
       <li class="message author-message">
-        Hola
+        {{claim.subject}}
       </li>
-      <li class="message response-message">
-        Hola
-      </li>
-      <li class="message author-message">
-        Como va?
-      </li>
-      <li class="message response-message">
-        Mal.
+      <li *ngFor="let m of messages" class="message" [ngClass]="{'author-message': m.id_user === m.claim.id_user, 'response-message': m.id_user !== m.claim.id_user}">
+        {{m.comment}}
       </li>
     </ul>
   </ion-list>

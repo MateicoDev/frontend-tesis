@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
+import { ClaimsProvider } from "../../providers/claims/claims";
 
 @IonicPage()
 @Component({
@@ -9,15 +10,24 @@ import { IonicPage, NavParams } from 'ionic-angular';
 export class ClaimMessagePage {
   claim: any;
   response = '';
+  messages = [];
+  userId = 1;
 
-  constructor(public navParams: NavParams) {
+  constructor(public navParams: NavParams,
+              private claimPrv: ClaimsProvider) {
   }
 
   ngOnInit() {
     this.claim = this.navParams.data.claim;
+    this.claimPrv.getMessagesByClaimId(this.claim.id).subscribe((res: any) => {
+      this.messages = res.claim_messages.items;
+    });
   }
 
   sendResponse() {
-    this.response = '';
+    this.claimPrv.postMessage({claim: {id: this.claim.id}, id_partnership: 1, id_user: this.userId, comment: this.response}).subscribe((res: any) => {
+      this.messages.push(res.claim_messages);
+      this.response = '';
+    });
   }
 }
