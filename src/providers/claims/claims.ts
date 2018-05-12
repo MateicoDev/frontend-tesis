@@ -22,4 +22,12 @@ export class ClaimsProvider {
     return this.http.post(this.apiEndpoint, claim);
   }
 
+  getMessagesByClaimId(id: number) {
+    return this.http.get(this.apiEndpoint+'/messages?id='+id);
+  }
+
+  postMessage(body: { claim:{ id: number }, id_partnership: number, id_user: number, comment: string}) {
+    return this.http.post(this.apiEndpoint+"/messages", body);
+  }
+
 }
