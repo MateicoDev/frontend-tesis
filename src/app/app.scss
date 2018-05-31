@@ -10,3 +10,8 @@
 .toolbar-background-md, .toolbar-background-ios {
   background-color: orange;
 }
+
+ion-select.select {
+  max-width: 100%;
+  width: 100%;
+}

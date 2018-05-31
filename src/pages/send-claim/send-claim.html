@@ -17,6 +17,18 @@
       <ion-label>Ingrese su reclamo</ion-label>
       <ion-textarea [(ngModel)]="claim.subject" required name="content" #content></ion-textarea>
     </ion-item>
-    <button ion-button full align-self-center [disabled]="!sendClaimForm.valid" class="send-claim-btn">Enviar</button>
+    <ion-item>
+      <ion-label>Seleccione al destinatario</ion-label>
+      <ion-select [(ngModel)]="claim.user_reciver.id_user" required #userCombo name="userCombo">
+        <ion-option *ngFor="let u of users" [value]="u.id">{{u.username}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button
+            full
+            align-self-center
+            [disabled]="!sendClaimForm.valid || claim?.user_reciver?.id_user < 0"
+            class="send-claim-btn">
+      Enviar
+    </button>
   </form>
 </ion-content>

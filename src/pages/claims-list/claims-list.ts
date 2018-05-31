@@ -6,6 +6,7 @@ import { ClaimsProvider } from "../../providers/claims/claims";
 import * as moment from 'moment';
 // @Page
 import {ClaimMessagePage} from "../claim-message/claim-message";
+import { UsersProvider } from "../../providers/users/users";
 
 
 @IonicPage()
@@ -15,11 +16,13 @@ import {ClaimMessagePage} from "../claim-message/claim-message";
 })
 export class ClaimsListPage {
   claims: Array<any>;
+  currentUser;
 
   constructor(private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
               private claimsPrv: ClaimsProvider,
-              private navCtrl: NavController) {
+              private navCtrl: NavController,
+              private usersPrv: UsersProvider) {
   }
 
   ionViewDidEnter() {
@@ -27,6 +30,7 @@ export class ClaimsListPage {
       content: 'Cargando los reclamos de los consorcistas...'
     });
     load.present();
+    this.currentUser = this.usersPrv.currentUser;
     this.claims = [];
     this.claimsPrv.getCurrentClaims().subscribe(
       res => {
@@ -55,5 +59,12 @@ export class ClaimsListPage {
 
   openClaim(claim: any) {
     this.navCtrl.push(ClaimMessagePage, { claim });
+  }
+
+  userSentClaim(c) {
+    if(c.user_sender) {
+      return c.user_sender.id_user == this.currentUser.id;
+    }
+    return false;
   }
 }

@@ -5,6 +5,7 @@ import { IonicPage, LoadingController, ToastController } from 'ionic-angular';
 import { ClaimsProvider } from "../../providers/claims/claims";
 // @Models
 import { Claim } from "../../models/claim.model";
+import { UsersProvider } from "../../providers/users/users";
 
 @IonicPage()
 @Component({
@@ -13,15 +14,18 @@ import { Claim } from "../../models/claim.model";
 })
 export class SendClaimPage {
   claim: Claim;
+  users = [];
 
   constructor(private claimsPrv : ClaimsProvider,
               private loaderCtrl: LoadingController,
               private toastCtrl : ToastController,
-              private changeDet: ChangeDetectorRef) {
+              private changeDet : ChangeDetectorRef,
+              private usersPrv  : UsersProvider) {
   }
 
   ngOnInit() {
-    this.claim = new Claim();
+    this.resetClaim();
+    this.users = this.usersPrv.users;
   }
 
   sendClaim() {
@@ -32,8 +36,8 @@ export class SendClaimPage {
     this.claimsPrv.sendClaim(this.claim).subscribe(
       res => {
         load.dismiss();
-        this.showMessage('Su reclamo ha sido enviado a la administración.');
-        this.claim = new Claim();
+        this.showMessage('Su reclamo ha sido enviado.');
+        this.resetClaim();
         this.changeDet.detectChanges();
       },
       err => {
@@ -50,6 +54,11 @@ export class SendClaimPage {
       message: msg
     });
     toast.present();
+  }
+
+  private resetClaim() {
+    this.claim = new Claim();
+    this.claim.user_sender.id_user = this.usersPrv.currentUser.id;
   }
 
 }

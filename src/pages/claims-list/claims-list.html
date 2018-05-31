@@ -18,7 +18,9 @@
       <p>
         Ultima edición: {{ formatDate(c.date) }}
       </p>
-      <ion-badge text-capitalize item-end color="danger">{{ c.status.name }}</ion-badge>
+      <ion-badge text-capitalize item-end [color]="userSentClaim(c)? 'danger' : 'primary'">
+        {{userSentClaim(c)? 'Enviado' : 'Recibido'}}
+      </ion-badge>
     </button>
   </ion-list>
 </ion-content>
