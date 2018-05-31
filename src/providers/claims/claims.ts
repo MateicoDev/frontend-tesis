@@ -2,11 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // @Models
 import {Claim} from "../../models/claim.model";
+//@Util
+import { API_ENDPOINT } from "../../app/utils/const.util";
 
 @Injectable()
 export class ClaimsProvider {
 
-  apiEndpoint = 'https://mateicodev.herokuapp.com/api/v1/claims';
+  apiEndpoint = API_ENDPOINT+'/claims';
 
   constructor(public http: HttpClient) {
   }

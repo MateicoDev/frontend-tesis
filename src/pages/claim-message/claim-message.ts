@@ -25,7 +25,15 @@ export class ClaimMessagePage {
   }
 
   sendResponse() {
-    this.claimPrv.postMessage({claim: {id: this.claim.id}, id_partnership: 1, id_user: this.userId, comment: this.response}).subscribe((res: any) => {
+    const response = {
+      claim: {
+        id: this.claim.id
+      },
+      id_partnership: 1,
+      id_user: this.userId,
+      comment: this.response,
+    };
+    this.claimPrv.postMessage(response).subscribe((res: any) => {
       this.messages.push(res.claim_messages);
       this.response = '';
     });

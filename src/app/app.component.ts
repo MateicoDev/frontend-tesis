@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // @Pages
 import { SendClaimPage } from "../pages/send-claim/send-claim";
 import { ClaimsListPage } from "../pages/claims-list/claims-list";
+import { LoginPage } from "../pages/login/login";
 
 
 @Component({
@@ -14,16 +15,20 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   @ViewChild('sideMenu') sideMenu: MenuController;
 
-  rootPage:any = ClaimsListPage;
+  rootPage:any = LoginPage;
 
   pages = [
     {
       component: SendClaimPage,
-      name: 'Enviar Reclamo',
+      name: 'Enviar Consulta',
     },
     {
       component: ClaimsListPage,
-      name: 'Listar Reclamos',
+      name: 'Listar Consultas',
+    },
+    {
+      component: LoginPage,
+      name: 'Cerrar Sesión',
     }
   ];
 
@@ -31,8 +36,6 @@ export class MyApp {
               statusBar: StatusBar,
               splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
