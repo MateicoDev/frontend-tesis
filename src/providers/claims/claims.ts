@@ -13,11 +13,12 @@ export class ClaimsProvider {
   constructor(public http: HttpClient) {
   }
 
-  getCurrentClaims() {
-    const params = new HttpParams();
-    params.append('page', '1');
-    params.append('per_page', '10000');
-    return this.http.get(this.apiEndpoint, { params });
+  getCurrentClaims(options: { type: string, id: number }) {
+    let option = 'id_user_sender';
+    if(options && options.type === 'recieved') {
+      option = 'id_user_reciver';
+    }
+    return this.http.get(this.apiEndpoint+`?page=1&per_page=10000&${option}=${options.id}`);
   }
 
   sendClaim(claim: Claim) {
