@@ -1,0 +1,21 @@
+<ion-content no-padding>
+  <ion-grid>
+    <ion-row class="login-form-container">
+      <ion-col col-10 offset-1 class="login-form">
+        <form #loginForm="ngForm" (submit)="login()">
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" #userName name="userName" [(ngModel)]="user.email" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+            <ion-input type="password" #password name="password" [(ngModel)]="user.password" required></ion-input>
+          </ion-item>
+          <button ion-button full [disabled]="!loginForm.valid" type="submit">
+            Iniciar sesión
+          </button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -12,6 +12,9 @@ import { ClaimsListPageModule } from "../pages/claims-list/claims-list.module";
 
 import * as moment from 'moment';
 import { ClaimMessagePageModule } from "../pages/claim-message/claim-message.module";
+import { LoginPageModule } from "../pages/login/login.module";
+import { UsersProvider } from '../providers/users/users';
+import { IonicStorageModule } from "@ionic/storage";
 
 @NgModule({
   declarations: [
@@ -24,6 +27,10 @@ import { ClaimMessagePageModule } from "../pages/claim-message/claim-message.mod
     ClaimsListPageModule,
     HttpClientModule,
     ClaimMessagePageModule,
+    LoginPageModule,
+    IonicStorageModule.forRoot({
+      name: '__cuferdb'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +40,8 @@ import { ClaimMessagePageModule } from "../pages/claim-message/claim-message.mod
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ClaimsProvider
+    ClaimsProvider,
+    UsersProvider,
   ]
 })
 export class AppModule {

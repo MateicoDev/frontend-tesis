@@ -3,9 +3,14 @@
     <button ion-button menuToggle item-start>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <h6>
-      Reclamos del consorcio "Ituzaingó"
-    </h6>
+    <ion-segment [(ngModel)]="claimsListed" (ionChange)="segmentChanged($event)" color="danger">
+      <ion-segment-button [value]="SEGMENT_SENT_KEY">
+        Enviados
+      </ion-segment-button>
+      <ion-segment-button [value]="SEGMENT_RECIEVED_KEY">
+        Recibidos
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +23,9 @@
       <p>
         Ultima edición: {{ formatDate(c.date) }}
       </p>
-      <ion-badge text-capitalize item-end color="danger">{{ c.status.name }}</ion-badge>
+      <ion-badge text-capitalize item-end color="danger">
+        {{c.status.name}}
+      </ion-badge>
     </button>
   </ion-list>
 </ion-content>
