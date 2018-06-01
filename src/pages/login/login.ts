@@ -12,7 +12,7 @@ export class LoginPage {
 
   users = [];
   user = {
-    userName: '',
+    email: '',
     password: '',
   };
 
@@ -53,7 +53,7 @@ export class LoginPage {
   }
 
   login() {
-    const userIdx = this.users.findIndex(u => u.username == this.user.userName);
+    const userIdx = this.users.findIndex(u => u.email == this.user.email);
     if (userIdx > -1) {
       const loader = this.loadingCtrl.create({
         content: 'Recuperando datos...'
@@ -65,7 +65,7 @@ export class LoginPage {
         this.users.splice(userIdx, 1);
         this.usersPrv.users = [...this.users];
         this.navCtrl.setRoot(SendClaimPage);
-        this.showMessage(`Bienvenido a tu VecindApp, ${this.user.userName}!`);
+        this.showMessage(`Bienvenido a tu VecindApp!`);
       }, 2000);
     } else {
       this.user.password = '';
