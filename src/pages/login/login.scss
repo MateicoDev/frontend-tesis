@@ -1,6 +1,6 @@
 page-login {
   .content > .scroll-content {
-    background-image: url("../../assets/imgs/login/bg.jpg");
+    background-image: url("/assets/imgs/login/bg.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -19,7 +19,7 @@ page-login {
         display: flex;
         flex-direction: column;
         height: 100%;
-        justify-content: center;
+        justify-content: space-around;
       }
       .item-block {
         background-color: transparent;

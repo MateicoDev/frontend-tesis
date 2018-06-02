@@ -7,10 +7,6 @@
             <ion-label floating>Email</ion-label>
             <ion-input type="email" #userName name="userName" [(ngModel)]="user.email" required></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label floating>Contraseña</ion-label>
-            <ion-input type="password" #password name="password" [(ngModel)]="user.password" required></ion-input>
-          </ion-item>
           <button ion-button full [disabled]="!loginForm.valid" type="submit">
             Iniciar sesión
           </button>
