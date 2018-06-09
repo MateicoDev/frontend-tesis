@@ -69,7 +69,7 @@ export class LoginPage {
       }, 2000);
     } else {
       this.user.password = '';
-      this.showMessage('Usuario y/o contraseña incorrecta, intente nuevamente');
+      this.showMessage('Usuario inexistente, intente nuevamente');
     }
   }
 }
