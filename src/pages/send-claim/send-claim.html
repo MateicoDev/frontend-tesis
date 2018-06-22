@@ -3,18 +3,18 @@
     <button ion-button menuToggle item-start>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Enviar un reclamo</ion-title>
+    <ion-title>Enviar una solicitud</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <form #sendClaimForm="ngForm" (submit)="sendClaim()">
     <ion-item>
-      <ion-label text-start>Ingrese el motivo de su reclamo</ion-label>
+      <ion-label text-start>Ingrese el motivo de su solicitud</ion-label>
       <ion-input [(ngModel)]="claim.title" required name="title" #title maxlength="30"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Ingrese su reclamo</ion-label>
+      <ion-label>Ingrese su solicitud</ion-label>
       <ion-textarea [(ngModel)]="claim.subject" required name="content" #content></ion-textarea>
     </ion-item>
     <ion-item>

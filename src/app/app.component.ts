@@ -20,11 +20,11 @@ export class MyApp {
   pages = [
     {
       component: SendClaimPage,
-      name: 'Enviar Consulta',
+      name: 'Enviar Solicitud',
     },
     {
       component: ClaimsListPage,
-      name: 'Listar Consultas',
+      name: 'Listar Solicitudes',
     },
     {
       component: LoginPage,
