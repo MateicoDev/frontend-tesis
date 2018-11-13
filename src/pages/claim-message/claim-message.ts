@@ -30,7 +30,7 @@ export class ClaimMessagePage {
         id: this.claim.id
       },
       id_partnership: this.claim.id_partnership || 1,
-      id_user: this.userId,
+      id_user_sender: this.userId,
       comment: this.response,
     };
     this.claimPrv.postMessage(response).subscribe((res: any) => {
