@@ -16,6 +16,7 @@ import { LoginPageModule } from "../pages/login/login.module";
 import { UsersProvider } from '../providers/users/users';
 import { IonicStorageModule } from "@ionic/storage";
 import { ExpensesPageModule } from "../pages/expenses/expenses.module";
+import { ExpensesProvider } from '../providers/expenses/expenses';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ExpensesPageModule } from "../pages/expenses/expenses.module";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ClaimsProvider,
     UsersProvider,
+    ExpensesProvider,
   ]
 })
 export class AppModule {
