@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, LoadingController, MenuController, NavController, ToastController } from 'ionic-angular';
 import { UsersProvider } from "../../providers/users/users";
 import { SendClaimPage } from "../send-claim/send-claim";
+import { Md5 } from "ts-md5";
+import { ClaimsListPage } from "../claims-list/claims-list";
 
 @IonicPage()
 @Component({
@@ -12,8 +14,8 @@ export class LoginPage {
 
   users = [];
   user = {
-    email: '',
-    password: '',
+    email: 'r.ovalle@outlook.com',
+    password: 'mate123',
   };
 
   constructor(private menuCtrl    : MenuController,
@@ -25,17 +27,6 @@ export class LoginPage {
 
   ngOnInit() {
     this.menuCtrl.enable(false);
-    const loader = this.loadingCtrl.create({
-      content: 'Recuperando datos...'
-    });
-    loader.present();
-    this.usersPrv.getUsers().subscribe((res: any) => {
-      this.users = res.users.items;
-      loader.dismiss();
-    }, err => {
-      loader.dismiss();
-      this.showMessage('Imposible recuperar los datos de inicio de sesión, compruebe su conexión y pruebe nuevamente');
-    });
   }
 
   ionViewWillLeave() {
@@ -53,23 +44,23 @@ export class LoginPage {
   }
 
   login() {
-    const userIdx = this.users.findIndex(u => u.email == this.user.email);
-    if (userIdx > -1) {
-      const loader = this.loadingCtrl.create({
-        content: 'Recuperando datos...'
-      });
-      loader.present();
-      setTimeout(() => {
+    const cred = {
+      user_email: this.user.email,
+      user_password: Md5.hashStr(this.user.password)
+    };
+    const loader = this.loadingCtrl.create({
+      content: 'Recuperando datos...'
+    });
+    loader.present();
+    this.usersPrv.login(cred).subscribe(
+      (res: any) => {
         loader.dismiss();
-        this.usersPrv.currentUser = this.users[userIdx];
-        this.users.splice(userIdx, 1);
-        this.usersPrv.users = [...this.users];
-        this.navCtrl.setRoot(SendClaimPage);
+        this.usersPrv.currentUser = res.user;
+        this.navCtrl.setRoot(ClaimsListPage);
         this.showMessage(`Bienvenido a tu VecindApp!`);
-      }, 2000);
-    } else {
-      this.user.password = '';
-      this.showMessage('Usuario inexistente, intente nuevamente');
-    }
+      }, err => {
+        loader.dismiss();
+        this.showMessage('Email o contraseña incorrecta, intente nuevamente');
+      });
   }
 }

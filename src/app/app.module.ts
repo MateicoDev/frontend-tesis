@@ -15,6 +15,7 @@ import { ClaimMessagePageModule } from "../pages/claim-message/claim-message.mod
 import { LoginPageModule } from "../pages/login/login.module";
 import { UsersProvider } from '../providers/users/users';
 import { IonicStorageModule } from "@ionic/storage";
+import { ExpensesPageModule } from "../pages/expenses/expenses.module";
 
 @NgModule({
   declarations: [
@@ -25,11 +26,12 @@ import { IonicStorageModule } from "@ionic/storage";
     IonicModule.forRoot(MyApp),
     SendClaimPageModule,
     ClaimsListPageModule,
+    ExpensesPageModule,
     HttpClientModule,
     ClaimMessagePageModule,
     LoginPageModule,
     IonicStorageModule.forRoot({
-      name: '__cuferdb'
+      name: '__vecindappdb'
     }),
   ],
   bootstrap: [IonicApp],

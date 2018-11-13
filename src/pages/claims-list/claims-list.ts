@@ -7,6 +7,7 @@ import * as moment from 'moment';
 // @Page
 import {ClaimMessagePage} from "../claim-message/claim-message";
 import { UsersProvider } from "../../providers/users/users";
+import { SendClaimPage } from "../send-claim/send-claim";
 
 @IonicPage()
 @Component({
@@ -18,11 +19,9 @@ export class ClaimsListPage {
   SEGMENT_RECIEVED_KEY = 'recieved';
 
   claims: Array<any>;
-  recieved = [];
   sent = [];
 
   gotSent = false;
-  gotRecieved = false;
 
   currentUser;
   claimsListed: string = this.SEGMENT_SENT_KEY;
@@ -36,37 +35,23 @@ export class ClaimsListPage {
 
   ionViewDidEnter() {
     const load = this.loadingCtrl.create({
-      content: 'Cargando los reclamos de los consorcistas...'
+      content: 'Cargando sus reclamos...'
     });
     load.present();
     this.currentUser = this.usersPrv.currentUser;
     this.claims = [];
     this.sent = [];
-    this.recieved = [];
     this.claimsPrv.getCurrentClaims({type: 'sent', id: this.currentUser.id}).subscribe(
       res => {
         this.sent.push(...res['claims']['items']);
         this.claims = [...this.sent];
         this.gotSent = true;
-        !this.gotRecieved && load.dismiss();
+        load.dismiss();
       },
       err => {
-        if(!this.gotRecieved) {
-          load.dismiss();
-          this.showMessage('Error al obtener los reclamos, revise su conexión e intente más tarde.');
-        }
-      }
-    );
-    this.claimsPrv.getCurrentClaims({type: 'recieved', id: this.currentUser.id}).subscribe(
-      res => {
-        this.recieved.push(...res['claims']['items']);
-        !this.gotSent && load.dismiss();
-      },
-      err => {
-        if(!this.gotSent) {
-          load.dismiss();
-          this.showMessage('Error al obtener los reclamos, revise su conexión e intente más tarde.');
-        }
+        load.dismiss();
+        this.showMessage('Error al obtener los reclamos, revise su conexión e intente más tarde.');
+
       }
     );
   }
@@ -88,12 +73,7 @@ export class ClaimsListPage {
     this.navCtrl.push(ClaimMessagePage, { claim });
   }
 
-
-  segmentChanged(value) {
-    if(this.claimsListed == this.SEGMENT_SENT_KEY) {
-      this.claims = [...this.sent];
-    } else if(this.claimsListed == this.SEGMENT_RECIEVED_KEY) {
-      this.claims = [...this.recieved];
-    }
+  openNewClaimForm() {
+    this.navCtrl.push(SendClaimPage);
   }
 }

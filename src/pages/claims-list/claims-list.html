@@ -3,14 +3,9 @@
     <button ion-button menuToggle item-start>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-segment [(ngModel)]="claimsListed" (ionChange)="segmentChanged($event)" color="danger">
-      <ion-segment-button [value]="SEGMENT_SENT_KEY">
-        Enviados
-      </ion-segment-button>
-      <ion-segment-button [value]="SEGMENT_RECIEVED_KEY">
-        Recibidos
-      </ion-segment-button>
-    </ion-segment>
+    <ion-title>
+      Tus Reclamos
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,11 +16,16 @@
         Motivo: <strong>{{ c.title }}</strong>
       </h4>
       <p>
-        Ultima edición: {{ formatDate(c.date) }}
+        Última edición: {{ formatDate(c.date) }}
       </p>
       <ion-badge text-capitalize item-end color="danger">
         {{c.status.name}}
       </ion-badge>
     </button>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab color="light" icon-only (click)="openNewClaimForm()">
+      <ion-icon name="add" color="danger"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
-import { IonicPage, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, ToastController } from 'ionic-angular';
 // @Pages
 // @Providers
 import { ClaimsProvider } from "../../providers/claims/claims";
@@ -20,7 +20,8 @@ export class SendClaimPage {
               private loaderCtrl: LoadingController,
               private toastCtrl : ToastController,
               private changeDet : ChangeDetectorRef,
-              private usersPrv  : UsersProvider) {
+              private usersPrv  : UsersProvider,
+              private navCtrl: NavController) {
   }
 
   ngOnInit() {
@@ -33,12 +34,12 @@ export class SendClaimPage {
       content: 'Enviando su reclamo...'
     });
     load.present();
+    this.claim.user_reciver.id_user = 5;
     this.claimsPrv.sendClaim(this.claim).subscribe(
       res => {
         load.dismiss();
         this.showMessage('Su reclamo ha sido enviado.');
-        this.resetClaim();
-        this.changeDet.detectChanges();
+        this.navCtrl.pop();
       },
       err => {
         load.dismiss();

@@ -29,7 +29,7 @@ export class ClaimMessagePage {
       claim: {
         id: this.claim.id
       },
-      id_partnership: 1,
+      id_partnership: this.claim.id_partnership || 1,
       id_user: this.userId,
       comment: this.response,
     };

@@ -3,9 +3,9 @@ import { MenuController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // @Pages
-import { SendClaimPage } from "../pages/send-claim/send-claim";
 import { ClaimsListPage } from "../pages/claims-list/claims-list";
 import { LoginPage } from "../pages/login/login";
+import { ExpensesPage } from "../pages/expenses/expenses";
 
 
 @Component({
@@ -19,12 +19,12 @@ export class MyApp {
 
   pages = [
     {
-      component: SendClaimPage,
-      name: 'Enviar Solicitud',
+      component: ClaimsListPage,
+      name: 'Mis Reclamos',
     },
     {
-      component: ClaimsListPage,
-      name: 'Listar Solicitudes',
+      component: ExpensesPage,
+      name: 'Mis Expensas',
     },
     {
       component: LoginPage,
