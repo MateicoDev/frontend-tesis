@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ExpensesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ExpensesProvider } from "../../providers/expenses/expenses";
 
 @IonicPage()
 @Component({
@@ -15,11 +9,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ExpensesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  spends;
+  expense;
+
+  constructor(private expensesPrv: ExpensesProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ExpensesPage');
+  ngOnInit() {
+    this.expensesPrv.getExpenses().subscribe(
+      (exp: any) => {
+         this.expense = {
+           total: exp['Expense per propertys'].items[0].total_cost.toFixed(2)
+         };
+        },
+        error1 => {
+        console.error(error1)
+    });
+    this.expensesPrv.getExpenseSpendings().subscribe(
+      (spendings: any) => {
+        this.spends = spendings.Spending.items;
+      },
+      error1 => {
+        console.error(error1)
+    })
   }
 
 }

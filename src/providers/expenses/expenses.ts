@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { API_ENDPOINT } from "../../app/utils/const.util";
 
-/*
-  Generated class for the ExpensesProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ExpensesProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello ExpensesProvider Provider');
+  }
+
+  getExpenses() {
+    return this.http.get(`${API_ENDPOINT}/expenses/property/2`);
+  }
+
+  getExpenseSpendings() {
+    return this.http.get(`${API_ENDPOINT}/expenses/spendings?id_partnership=1&month=11&year=2018`);
   }
 
 }

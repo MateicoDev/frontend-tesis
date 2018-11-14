@@ -14,8 +14,8 @@ export class LoginPage {
 
   users = [];
   user = {
-    email: 'r.ovalle@outlook.com',
-    password: 'mate123',
+    email: '',
+    password: '',
   };
 
   constructor(private menuCtrl    : MenuController,

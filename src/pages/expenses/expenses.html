@@ -1,18 +1,30 @@
-<!--
-  Generated template for the ExpensesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Expenses</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar>
+    <button ion-button menuToggle item-start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tus Expensas</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-card>
+    <ion-card-header>
+      Noviembre 2018
+    </ion-card-header>
+    <ion-spinner *ngIf="!expense"></ion-spinner>
+    <ion-card-content *ngIf="expense">
+      <ion-card-title>
+        Total: ${{expense.total}}
+      </ion-card-title>
+      <ion-spinner *ngIf="!spends"></ion-spinner>
+      <ion-list *ngIf="spends">
+        <ion-list-header>Gastos del mes:</ion-list-header>
+        <ion-item *ngFor="let spend of spends; let i = $index;" class="spend">
+          {{i}}. {{spend.observation}}: ${{spend.total_price}}
+        </ion-item>
+        <ion-item *ngIf="spends.length === 0">No hay gastos del mes...</ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
