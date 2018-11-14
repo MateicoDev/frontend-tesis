@@ -8,12 +8,17 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngIf="!loading && !expense">
+    <ion-card-header text-center>
+      No se pudieron recuperar expensas
+    </ion-card-header>
+  </ion-card>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-card *ngIf="expense">
     <ion-card-header>
       Octubre 2018
     </ion-card-header>
-    <ion-spinner *ngIf="!expense"></ion-spinner>
-    <ion-card-content *ngIf="expense">
+    <ion-card-content>
       <ion-card-title>
         Total: ${{expense.total}}
       </ion-card-title>
